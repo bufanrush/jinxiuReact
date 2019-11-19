@@ -7,7 +7,18 @@ class FuWuItem extends Component {
         this.state = {};
         this.handleClick = this.handleClick.bind(this);
     }
+
+    shouldComponentUpdate(nextProps,nextState){
+        if(nextProps.content !== this.props.content){
+            return true;
+        }else{
+            return false;
+        }
+       
+    }
+
     render() { 
+        console.log("render");
         return ( 
             <div
             onClick = {this.handleClick}

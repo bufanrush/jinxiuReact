@@ -1,18 +1,30 @@
 import React, { Component,Fragment } from 'react';
 import './style.css';
 import FuWuItem from './FuWuItem';
+import axios from 'axios';
 
-class FuWu extends Component {
+class FuWu extends Component { 
     constructor(props){
         super(props);
         this.state={
             inputValue:'',
-            list:['头部按摩','精油推背']
+            list:[]
         }
         this.inputChange = this.inputChange.bind(this);
         this.addList = this.addList.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
     }
+
+    componentDidMount(){
+        axios.get('https://www.easy-mock.com/mock/5dd40e0033d2d626526305df/ReactDemo01/fuwu').then((res)=>{
+            console.log('axios 获取成功:'+JSON.stringify(res))
+            this.setState({
+                list:res.data.data
+            })
+        })
+            .catch((error)=>{console.log('axios 获取数据失败:' + error)})
+    }
+
     render() { 
         return ( 
             <Fragment>
