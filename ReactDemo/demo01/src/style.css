@@ -1,3 +1,23 @@
 .input {
     border: 3px solid #ae7000;
  }
+.dong-text-enter{
+    opacity: 0;
+}
+.dong-text-enter-active{
+    opacity: 1;
+    transition: opacity 2000ms;
+}
+.dong-text-enter-done{
+    opacity: 1;
+}
+.dong-text-exit{
+    opacity: 1;
+}
+.dong-text-exit-active{
+    opacity: 0;
+    transition: opacity 2000ms;
+}
+.dong-text-exit-done{
+    opacity: 0;
+}

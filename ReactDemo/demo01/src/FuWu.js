@@ -1,7 +1,9 @@
 import React, { Component,Fragment } from 'react';
+import axios from 'axios';
+import {CSSTransition,TransitionGroup} from 'react-transition-group';
 import './style.css';
 import FuWuItem from './FuWuItem';
-import axios from 'axios';
+import DongHua from './DongHua';
 
 class FuWu extends Component { 
     constructor(props){
@@ -40,19 +42,30 @@ class FuWu extends Component {
                     onClick={this.addList}
                     >服务</button>
                     <ul>
-                        {
-                            this.state.list.map((item,index)=>{
-                            return (
-                                    <FuWuItem 
-                                    key = {index+item}
-                                    content = {item}
-                                    index={index}
-                                    deleteItem={this.deleteItem}
-                                    />
-                                )
-                            })
-                        }
+                        <TransitionGroup>
+                            {
+                                this.state.list.map((item,index)=>{
+                                return (
+                                    <CSSTransition
+                                        timeout={2000}
+                                        classNames='dong-text'
+                                        unmountOnExit
+                                        appear={true}
+                                        key={index+item}
+                                    >
+                                        <FuWuItem 
+                                        key = {index+item}
+                                        content = {item}
+                                        index={index}
+                                        deleteItem={this.deleteItem}
+                                        />
+                                    </CSSTransition>
+                                    )
+                                })
+                            }
+                        </TransitionGroup>
                     </ul>
+                    <DongHua />
                 </div>
             </Fragment>
          );
